@@ -1,23 +1,19 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StopWatch</title>
+    <title>Цаг Хэмжигч</title>
     <link rel="stylesheet" href="./stopwatch.css" />
   </head>
   <body>
     <div class="stopwatch">
-      <div class="display">
-        <span id="hours">00</span>:<span id="minutes">00</span>:<span
-          id="seconds"
-          >00</span
-        >:<span id="millieseconds">000</span>
-      </div>
+      <div id="display" class="display">00:00:00:00</div>
       <div class="controls">
-        <button id="startStop">Эхлэх</button>
-        <button id="reset">Дахин Эхлэх</button>
+        <button id="start">Эхлэх</button>
+        <button id="lap">Lap</button>
+        <button id="reset">Шинэчлэх</button>
       </div>
+      <div id="lap-list" class="lap-list"></div>
     </div>
     <script src="./stopwatch.js"></script>
   </body>
