@@ -4,12 +4,19 @@ const timeElement = document.getElementById("time");
 const updateClock = () => {
   const now = new Date();
   let year = now.getFullYear();
-  let month = now.getMonth() + 1;
-  let day = now.getDate();
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-  let seconds = now.getSeconds();
+  let month = (now.getMonth() + 1).toString().padStart(2, "0");
+  let day = now.getDate().toString().padStart(2, 0)
+  let hours = now.getHours().toString().padStart(2, "0");
+  let minutes = now.getMinutes().toString().padStart(2, "0");
+  let seconds = now.getSeconds().toString().padStart(2, "0");
   let ampm;
+
+  // const tz = now.getTimezoneOffset();
+  // console.log("TX",tz)
+
+  const monthNames = ["jan", "feb", "mar", "apr", "may", "june", "july", "aug", "sep", "oct", "nov"];
+  let monthINdex = now.getMonth();
+  let monthName = monthNames[monthINdex];
 
   if (hours >= 12) {
     ampm = "PM";
@@ -23,23 +30,9 @@ const updateClock = () => {
     hours = 12;
   }
 
-  if (month < 10) {
-    month = "0" + month;
-  }
-  if (day < 10) {
-    day = "0" + day;
-  }
-  if (hours < 10) {
-    hours = "0" + hours;
-  }
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
+  hours = hours.toString().padStart(2, "0");
 
-  const dateString = `${year}-${month}-${day}`;
+  const dateString = `${year}-${monthName.toUpperCase()}-${day}`;
   const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
 
   dateElement.textContent = dateString;
@@ -49,3 +42,5 @@ const updateClock = () => {
 updateClock();
 
 setInterval(updateClock, 1000);
+
+
