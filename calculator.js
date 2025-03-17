@@ -6,13 +6,18 @@ const minusBtn = document.getElementsByClassName("minusBtn")[0];
 const multiplyBtn = document.getElementsByClassName("multiplyBtn")[0];
 const divideBtn = document.getElementsByClassName("divideBtn")[0];
 const clearBtn = document.getElementsByClassName("clearBtn")[0];
+const decimalBtn = document.getElementsByClassName("decimalBtn")[0];
 
 let operand1 = "";
 let operand2 = "";
 let operator = "";
+let decimalCount = 0;
 
 for (const btn of numberBtns) {
   btn.addEventListener("click", () => {
+    if (display.innerText.includes(".")) {
+      decimalCount++;
+    }
     display.innerText += btn.innerText;
   });
 }
@@ -21,24 +26,28 @@ addBtn.addEventListener("click", () => {
   operand1 = display.innerText;
   operator = "+";
   display.innerText = "";
+  decimalCount = 0;
 });
 
 minusBtn.addEventListener("click", () => {
   operand1 = display.innerText;
   operator = "-";
   display.innerText = "";
+  decimalCount = 0;
 });
 
 multiplyBtn.addEventListener("click", () => {
   operand1 = display.innerText;
   operator = "x";
   display.innerText = "";
+  decimalCount = 0;
 });
 
 divideBtn.addEventListener("click", () => {
   operand1 = display.innerText;
   operator = "÷";
   display.innerText = "";
+  decimalCount = 0;
 });
 
 equalBtn.addEventListener("click", () => {
@@ -62,10 +71,15 @@ equalBtn.addEventListener("click", () => {
       console.log("Operation not work");
   }
 
-  display.innerText = result;
-  operand1 = result.toString();
+  if (decimalCount > 0) {
+    display.innerText = result.toFixed(decimalCount);
+  } else {
+    display.innerText = result.toString();
+  }
+  operand1 = display.innerText;
   operand2 = "";
   operator = "";
+  decimalCount = 0;
 });
 
 clearBtn.addEventListener("click", () => {
@@ -73,4 +87,11 @@ clearBtn.addEventListener("click", () => {
   operand1 = "";
   operand2 = "";
   operator = "";
+  decimalCount = 0;
+});
+
+decimalBtn.addEventListener("click", () => {
+  if (!display.innerText.includes(".")) {
+    display.innerText += ".";
+  }
 });
