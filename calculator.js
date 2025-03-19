@@ -13,6 +13,7 @@ let operand2 = "";
 let operator = "";
 let decimalCount = 0;
 
+
 for (const btn of numberBtns) {
   btn.addEventListener("click", () => {
     if (display.innerText.includes(".")) {
